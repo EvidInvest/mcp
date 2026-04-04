@@ -1,0 +1,40 @@
+{
+  "name": "EvidInvest",
+  "description": "AI-powered financial data and portfolio analysis. Access DCF valuations, MPT optimization, earnings data, and more for any stock.",
+  "version": "1.0.0",
+  "type": "mcp",
+  "config": {
+    "command": "npx",
+    "args": ["-y", "@evidinvest/mcp-gateway@latest"],
+    "env": {
+      "EVIDINVEST_API_KEY": "${EVIDINVEST_API_KEY}"
+    }
+  },
+  "capabilities": {
+    "tools": true,
+    "resources": false,
+    "prompts": true
+  },
+  "prompts": [
+    {
+      "name": "evaluate-stock",
+      "description": "Full fundamental evaluation of a stock",
+      "template": "Evaluate {{symbol}} as an investment. Get DCF fair value, PEG ratio, revenue CAGR, and fair value range. Is it undervalued or overvalued? Give a buy/hold/sell recommendation."
+    },
+    {
+      "name": "optimize-portfolio",
+      "description": "MPT portfolio optimization",
+      "template": "Optimize this portfolio using MPT Max Sharpe: {{symbols}}. Show optimal weights, expected Sharpe ratio, and which stocks the optimizer excludes."
+    },
+    {
+      "name": "pre-earnings-research",
+      "description": "Pre-earnings research for a stock",
+      "template": "{{symbol}} reports earnings soon. Get consensus estimates, our DCF fair value, PE vs historical average, and fair value range. What needs to happen for the stock to be fairly valued?"
+    },
+    {
+      "name": "portfolio-self-evaluation",
+      "description": "Evaluate current portfolio vs MPT optimal",
+      "template": "Evaluate my portfolio: {{holdings}}. For each position get fair value and margin of safety. Then run MPT optimization and show how my allocation compares to the optimal weights."
+    }
+  ]
+}

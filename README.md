@@ -98,6 +98,26 @@ Claude: [calls get_price_history_with_volatility("TSLA", "2024-01-01", "2024-12-
 - **Valuation dashboard**: Compare multiple stocks side-by-side
 - **Risk monitor**: Track rolling volatility and Sharpe ratios
 
+## Skills & Prompts
+
+The `skills/` folder contains ready-to-use prompt templates for common workflows:
+
+| Skill | Description |
+|-------|-------------|
+| [Stock Evaluation](skills/stock-evaluation.md) | Full fundamental analysis — DCF, PEG, growth rates, peer comparison |
+| [Portfolio Optimization](skills/portfolio-optimization.md) | MPT Max Sharpe optimization with rebalancing and sector comparison |
+| [Portfolio Self-Evaluation](skills/portfolio-self-evaluation.md) | Evaluate your current holdings vs the mathematically optimal allocation |
+| [Earnings Research](skills/earnings-research.md) | Pre-earnings prep — consensus estimates, fair value scenarios, what to watch |
+
+### Claude Plugin
+
+The [`claude-plugin.json`](claude-plugin.json) file provides a Claude Desktop plugin configuration with built-in prompt templates. It includes four prompts you can invoke directly:
+
+- **evaluate-stock** — Full fundamental evaluation of any stock
+- **optimize-portfolio** — MPT portfolio optimization for a set of symbols
+- **pre-earnings-research** — Pre-earnings research and scenario analysis
+- **portfolio-self-evaluation** — Compare your portfolio to the MPT optimal
+
 ## Blog & Tutorials
 
 - [How to Build a Stock Valuation Agent](https://evidinvest.com/blog/mcp-stock-valuation-agent-2026)
