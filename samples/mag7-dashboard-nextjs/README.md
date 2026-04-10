@@ -1,55 +1,64 @@
 # Magnificent 7 Dashboard
 
-A sample Next.js app that compares the Magnificent 7 stocks (AAPL, MSFT, GOOGL, AMZN, NVDA, META, TSLA) using live data from the [EvidInvest MCP](https://github.com/EvidInvest/mcp) server.
+A sample Next.js app that compares the Magnificent 7 stocks (AAPL, MSFT, GOOGL, AMZN, NVDA, META, TSLA) using live data from the hosted [EvidInvest MCP](https://github.com/EvidInvest/mcp) gateway.
 
-Shows at a glance: market cap, P/E ratios, DCF fair value, margin of safety, and MPT-optimal portfolio weights.
+Shows at a glance:
+- market cap
+- current price
+- trailing P/E
+- bear / base / bull fair value range
+- upside vs current price
 
 ## Prerequisites
 
 - Node.js 18+
-- An EvidInvest API key ([get one here](https://evidinvest.com/developers) — requires Pro subscription)
+- an EvidInvest MCP API key ([get one here](https://evidinvest.com/developers) — requires a paid plan)
 
 ## Quick Start
 
 ```bash
 cd samples/mag7-dashboard-nextjs
-
-# Install dependencies
 npm install
-
-# Configure your API key
-cp .env.example .env
-# Edit .env and paste your EVIDINVEST_API_KEY
-
-# Start the dev server
+cp .env.example .env.local
+# paste your EVIDINVEST_API_KEY into .env.local
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Then open [http://localhost:3000](http://localhost:3000).
+
+## Environment Variables
+
+```bash
+EVIDINVEST_API_KEY=evid_sk_...
+# optional override if you want to point at a different MCP gateway
+EVIDINVEST_MCP_URL=https://36dpjzesa7.us-east-1.awsapprunner.com/mcp
+```
 
 ## What It Does
 
-On load, the app connects to the EvidInvest MCP server (via `@modelcontextprotocol/sdk`) and calls these tools for each Mag7 stock:
+On load, the app connects to the hosted EvidInvest MCP gateway over **streamable HTTP** using the MCP TypeScript SDK and calls these tools for each Mag7 stock:
 
-| Tool | Data |
-|------|------|
-| `get_company_profile` | Name, sector, market cap, price |
-| `get_dcf_valuation` | Fair value estimate, margin of safety |
-| `get_pe_ratios` | Trailing and forward P/E |
-| `get_mpt_optimization` | Optimal portfolio weights, Sharpe ratio |
+| Tool | Data used |
+|------|-----------|
+| `get_company_profile` | name, sector, market cap, current price |
+| `get_fair_value_range` | bear / base / bull fair value + upside |
+| `get_pe_ratios` | latest trailing P/E |
 
-Results are displayed in a comparison table, individual stock cards, and an MPT allocation chart.
+Results are shown in:
+- a side-by-side comparison table
+- individual stock cards
+- a clean setup-state screen if the API key is missing or invalid
 
 ## No API Key?
 
-The dashboard degrades gracefully. Without a valid `EVIDINVEST_API_KEY`, it shows a setup guide instead of crashing.
+The sample degrades gracefully. Without a valid `EVIDINVEST_API_KEY`, it shows a setup message instead of crashing.
 
 ## Stack
 
 - [Next.js 15](https://nextjs.org/) (App Router)
 - [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
-- [EvidInvest MCP Server](https://github.com/EvidInvest/mcp)
-- Zero CSS dependencies — inline styles for portability
+- EvidInvest hosted MCP gateway (`/mcp`)
+- minimal styling, no UI framework required
 
 ## License
 
