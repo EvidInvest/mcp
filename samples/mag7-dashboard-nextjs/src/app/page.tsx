@@ -1,6 +1,4 @@
-"use client";
-
-import { useEffect, useState } from "react";
+import { fetchDashboardData } from "@/lib/mcp-client";
 import type { DashboardData, StockData } from "@/lib/mcp-client";
 
 // ── Styles (inline to keep the sample zero-config) ──────────────────────
@@ -377,27 +375,14 @@ function ComparisonTable({ stocks }: { stocks: StockData[] }) {
 
 // ── Main Page ───────────────────────────────────────────────────────────
 
-export default function Home() {
-  const [data, setData] = useState<DashboardData | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+export const dynamic = "force-dynamic";
 
-  useEffect(() => {
-    fetch("/api/mag7")
-      .then(async (res) => {
-        const json = await res.json();
-        if (!res.ok) {
-          setError(json.message || "Failed to fetch data");
-        } else {
-          setData(json);
-        }
-      })
-      .catch((err) => setError(err.message))
-      .finally(() => setLoading(false));
-  }, []);
+export default async function Home() {
+  const data: DashboardData = await fetchDashboardData();
 
-  if (loading) return <SetupState message="loading" />;
-  if (error || !data) return <SetupState message={error ?? undefined} />;
+  if (data.setupRequired) {
+    return <SetupState message={data.message ?? undefined} />;
+  }
 
   return (
     <div style={styles.container}>
