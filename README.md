@@ -1,133 +1,92 @@
-# EvidInvest MCP Server
+# EvidInvest MCP
 
-AI-powered financial data tools for Claude, Cursor, and any MCP client.
+Public docs, connection info, prompt skills, and sample apps for the **EvidInvest MCP** ecosystem.
 
-Connect EvidInvest to your AI agent and get instant access to:
-- DCF valuations and fair value estimates
-- MPT portfolio optimization
-- Price history with rolling volatility
-- Earnings calendar and estimates  
-- Revenue growth rates and financial ratios
-- Industry PE comparisons
+This repo is intentionally **public**.
+It is for:
+- connection/setup guidance for different MCP clients
+- reusable skill/prompt files
+- examples you can paste into AI tools
+- public sample apps built on top of EvidInvest MCP
 
-## Quick Start
+> The actual MCP server logic and infra live in EvidInvest's **private infra repo**. This public repo is for usage, docs, and samples.
 
-Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_desktop_config.json`):
+## Repo layout
 
-```json
-{
-  "mcpServers": {
-    "evidinvest": {
-      "command": "npx",
-      "args": ["-y", "@evidinvest/mcp"],
-      "env": {
-        "EVIDINVEST_API_KEY": "your-api-key-here"
-      }
-    }
-  }
-}
-```
+- `skills/` — reusable workflow guides / prompt skills
+- `examples/` — short copy-paste prompt examples
+- `samples/` — runnable sample apps
+- `claude-plugin.json` — example MCP config artifact for supported desktop/editor workflows
 
-Get your API key at [evidinvest.com/developers](https://evidinvest.com/developers) (Pro subscribers).
+## Hosted MCP gateway
 
-## Available Tools (26 total)
+Current hosted gateway:
+- **Endpoint:** `https://36dpjzesa7.us-east-1.awsapprunner.com/mcp`
+- **Auth:** `Authorization: Bearer evid_sk_...`
 
-### Financial Data
-- `get_company_profile` — Company overview, sector, market cap
-- `get_income_statement` — Revenue, margins, YoY growth
-- `get_balance_sheet` — Assets, debt, equity
-- `get_cash_flow` — Operating/free cash flow
-- `get_growth_rates` — Revenue and earnings CAGR
-- `get_pe_ratios` — PE ratio history and industry comparison
-- `get_earnings_estimates` — Consensus EPS and revenue estimates
-- `get_price_history_with_volatility` — Daily OHLCV + 30d/90d rolling volatility
+Get an API key at:
+- **https://evidinvest.com/developers**
 
-### Market Data
-- `get_earnings_calendar` — Upcoming earnings dates
-- `get_market_overview` — Market indices and sector performance
-- `screen_by_valuation` — Filter stocks by PE, PEG, margins, upside
+## Connection notes
 
-### Valuation
-- `get_dcf_valuation` — DCF fair value estimate
-- `get_margin_of_safety` — Upside/downside to fair value
-- `get_fair_value_range` — Bull/base/bear scenarios
-- `get_peg_ratio` — Growth-adjusted valuation
-- `compare_stocks` — Side-by-side comparison
+Different MCP clients support different config formats and transports.
+Use this repo as the source of truth for:
+- hosted endpoint
+- auth expectations
+- skills/examples
+- sample apps
 
-### Portfolio & Calculation
-- `get_mpt_optimization` — Max Sharpe portfolio weights
-- `get_sharpe_ratio` — Risk-adjusted return metric
-- `get_revenue_cagr` — Compound annual growth rate
+The included `claude-plugin.json` is an example configuration artifact, but always verify the current format your client expects.
 
-## Example Conversations
+## What EvidInvest MCP gives you
 
-### Value a stock
-```
-You: What is the fair value of NVDA?
-Claude: [calls get_dcf_valuation("NVDA")]
-→ Fair value: $142, Current: $118, Upside: 20%, Margin of safety: 17%
-```
+EvidInvest MCP exposes valuation, market-data, and portfolio-analysis workflows such as:
+- DCF valuation
+- fair value ranges
+- margin of safety
+- PEG / P/E analysis
+- earnings research
+- stock comparison
+- portfolio optimization / MPT
 
-### Optimize a portfolio
-```
-You: Optimize my portfolio: AAPL, MSFT, GOOGL, NVDA, META
-Claude: [calls get_mpt_optimization(["AAPL","MSFT","GOOGL","NVDA","META"], lookback_days=252)]
-→ Optimal weights: GOOGL 28%, MSFT 24%, META 22%, AAPL 18%, NVDA 8%
-   Expected Sharpe: 1.4 | Expected return: 18.2% | Vol: 19.1%
-```
+## Skills
 
-### Screen for value
-```
-You: Find undervalued US large-caps with strong margins
-Claude: [calls screen_by_valuation(pe_max=20, margin_min=25, upside_min=15)]
-→ Returns: CSCO, IBM, JNJ, KO... (filtered list with metrics)
-```
+The `skills/` folder contains reusable prompt/workflow guides:
 
-### Get price history with volatility
-```
-You: Show me TSLA price history and rolling volatility for 2024
-Claude: [calls get_price_history_with_volatility("TSLA", "2024-01-01", "2024-12-31")]
-→ Returns daily OHLCV + 30d rolling vol + 90d rolling vol
-```
+- [Stock Evaluation](skills/stock-evaluation.md)
+- [Portfolio Optimization](skills/portfolio-optimization.md)
+- [Portfolio Self-Evaluation](skills/portfolio-self-evaluation.md)
+- [Earnings Research](skills/earnings-research.md)
 
-## Use Cases
+## Examples
 
-- **Portfolio optimizer**: Run MPT on any stock universe, find optimal weights
-- **Earnings tracker**: Get upcoming earnings + fair value before reports
-- **Sector screener**: Filter stocks by fundamentals across any sector
-- **Valuation dashboard**: Compare multiple stocks side-by-side
-- **Risk monitor**: Track rolling volatility and Sharpe ratios
+The `examples/` folder contains lighter-weight copy/paste prompts:
 
-## Skills & Prompts
+- [Portfolio Optimizer](examples/portfolio-optimizer.md)
+- [Earnings Research](examples/earnings-research.md)
+- [Sector Screener](examples/sector-screener.md)
 
-The `skills/` folder contains ready-to-use prompt templates for common workflows:
+## Sample apps
 
-| Skill | Description |
-|-------|-------------|
-| [Stock Evaluation](skills/stock-evaluation.md) | Full fundamental analysis — DCF, PEG, growth rates, peer comparison |
-| [Portfolio Optimization](skills/portfolio-optimization.md) | MPT Max Sharpe optimization with rebalancing and sector comparison |
-| [Portfolio Self-Evaluation](skills/portfolio-self-evaluation.md) | Evaluate your current holdings vs the mathematically optimal allocation |
-| [Earnings Research](skills/earnings-research.md) | Pre-earnings prep — consensus estimates, fair value scenarios, what to watch |
+### `samples/mag7-dashboard-nextjs`
 
-### Claude Plugin
+A public Next.js sample app that compares the Magnificent 7 using live EvidInvest MCP data.
 
-The [`claude-plugin.json`](claude-plugin.json) file provides a Claude Desktop plugin configuration with built-in prompt templates. It includes four prompts you can invoke directly:
+It is meant to show how a developer can:
+- connect to the hosted EvidInvest MCP gateway
+- use a real MCP API key
+- render a useful stock-comparison UI locally
+- build demo/social artifacts from a real sample app instead of mock marketing copy
 
-- **evaluate-stock** — Full fundamental evaluation of any stock
-- **optimize-portfolio** — MPT portfolio optimization for a set of symbols
-- **pre-earnings-research** — Pre-earnings research and scenario analysis
-- **portfolio-self-evaluation** — Compare your portfolio to the MPT optimal
-
-## Blog & Tutorials
-
-- [How to Build a Stock Valuation Agent](https://evidinvest.com/blog/mcp-stock-valuation-agent-2026)
-- [We Ran MPT on the Top 100 US Stocks](https://evidinvest.com/blog/mpt-portfolio-optimization-2026)
-- [15 Years of MPT: Sector vs Diversified](https://evidinvest.com/blog/mpt-sector-backtest-2026)
+See the sample README for local setup instructions.
 
 ## Pricing
 
-Available to EvidInvest Pro subscribers. [Get access →](https://evidinvest.com/developers)
+EvidInvest MCP access requires an EvidInvest plan with MCP access.
+
+Sign up at:
+- **https://evidinvest.com/developers**
 
 ## License
 
-MIT — see LICENSE
+MIT — see [LICENSE](LICENSE)
