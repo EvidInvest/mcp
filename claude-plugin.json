@@ -35,6 +35,11 @@
       "name": "portfolio-self-evaluation",
       "description": "Evaluate current portfolio vs MPT optimal",
       "template": "Evaluate my portfolio: {{holdings}}. For each position get fair value and margin of safety. Then run MPT optimization and show how my allocation compares to the optimal weights."
+    },
+    {
+      "name": "portfolio-tracking",
+      "description": "Create a portfolio list, add stocks, optimize, and track",
+      "template": "Create a portfolio list called '{{name}}' with these stocks: {{symbols}}. Then run MPT optimization on them and show me the optimal weights. Finally, compare fair value for each position to find rebalance candidates."
     }
   ]
 }

@@ -21,7 +21,8 @@ It is for:
 ## Hosted MCP gateway
 
 Current hosted gateway:
-- **Endpoint:** `https://36dpjzesa7.us-east-1.awsapprunner.com/mcp`
+- **Endpoint:** `https://mcp.evidinvest.com/mcp`
+- **Transport:** `streamable-http`
 - **Auth:** `Authorization: Bearer evid_sk_...`
 
 Get an API key at:
@@ -40,14 +41,24 @@ The included `claude-plugin.json` is an example configuration artifact, but alwa
 
 ## What EvidInvest MCP gives you
 
-EvidInvest MCP exposes valuation, market-data, and portfolio-analysis workflows such as:
-- DCF valuation
-- fair value ranges
-- margin of safety
-- PEG / P/E analysis
-- earnings research
-- stock comparison
-- portfolio optimization / MPT
+34 tools across 6 categories:
+
+| Category | Tools | Examples |
+|----------|-------|---------|
+| **Financial Data** | 6 | Company profile, income statement, balance sheet, cash flow, growth rates, PE ratios |
+| **Market Data** | 8 | Current price, historical prices, enterprise value, peers, multiples, dividends |
+| **Calculations** | 5 | WACC, DCF, margin of safety, comparables, DDM |
+| **Valuations** | 7 | Company snapshot, fair value range, reverse DCF, stock comparison, CAGR matrix |
+| **Portfolio Analytics** | 2 | MPT optimization (Max Sharpe / Min Variance), risk decomposition (VaR, CVaR) |
+| **Portfolio Management** | 6 | Create/list/delete stock lists, add/remove symbols, watchlist toggle |
+
+### Portfolio Management (new)
+Manage your stock lists, watchlists, and portfolio lists without the UI:
+- `list_user_stock_lists` — list all your lists with symbols and counts
+- `create_user_stock_list` — create a stock list, watchlist, or portfolio list
+- `add_symbols_to_user_list` / `remove_symbols_from_user_list` — manage symbols
+- `set_user_list_watched` — toggle watchlist tracking
+- `delete_user_stock_list` — delete a non-system list
 
 ## Skills
 
@@ -56,6 +67,7 @@ The `skills/` folder contains reusable prompt/workflow guides:
 - [Stock Evaluation](skills/stock-evaluation.md)
 - [Portfolio Optimization](skills/portfolio-optimization.md)
 - [Portfolio Self-Evaluation](skills/portfolio-self-evaluation.md)
+- [Portfolio Tracking](skills/portfolio-tracking.md) — manage lists + optimize together
 - [Earnings Research](skills/earnings-research.md)
 
 ## Examples
