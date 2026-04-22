@@ -1,5 +1,6 @@
 startCommand:
   type: http
+  url: https://mcp.evidinvest.com/mcp
   configSchema:
     type: object
     properties:
