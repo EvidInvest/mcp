@@ -1,0 +1,41 @@
+# EvidInvest MCP Server — llms.txt
+
+> Financial data and valuation tools for AI agents. 34 tools covering company fundamentals, market data, DCF analysis, portfolio optimization, portfolio tracking, and stock comparison.
+
+## Quick Start
+
+Connect via MCP StreamableHTTP at `https://mcp.evidinvest.com/mcp` with `Authorization: Bearer evid_sk_...` header.
+
+## What You Can Do
+
+- Value any US-listed stock using DCF, PE, PEG, P/B, P/S, EV/EBITDA
+- Get a bear/base/bull fair value range with a verdict (undervalued/fairly valued/overvalued)
+- Compare up to 5 stocks side-by-side on valuation metrics
+- Pull financial statements (income, balance sheet, cash flow) — annual or quarterly
+- Get growth rates (CAGR) for revenue, EPS, equity across 1-30 year periods
+- Calculate WACC, run margin of safety analysis, dividend discount models
+- Optimize portfolios using Modern Portfolio Theory (max Sharpe, min variance)
+- Decompose portfolio risk by position, sector, and factor
+- Track portfolio holdings and compute weighted valuations
+
+## Recommended Tool Order
+
+For a complete stock analysis:
+1. `get_company_snapshot` — overview
+2. `get_fair_value_range` — is it cheap or expensive?
+3. `get_cagr_matrix` — growth trajectory
+4. `get_dcf_valuation` — detailed intrinsic value
+5. `get_reverse_dcf` — what the market expects
+
+## Important Notes
+
+- Data is updated daily, prices are EOD (not real-time)
+- Financial companies: skip EV/EBITDA, use P/B instead
+- Pre-profit companies: PE/PEG will be null, use P/S
+- DCF fair values are sensitive to growth + discount rate assumptions — always mention this
+- All values in the company's reporting currency (USD, EUR, SEK, etc.)
+
+## Documentation
+
+Full tool reference: https://evidinvest.com/developers
+LLM skills guides: see `/skills/` directory in this repo
