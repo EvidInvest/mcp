@@ -41,7 +41,7 @@ The included `claude-plugin.json` is an example configuration artifact, but alwa
 
 ## What EvidInvest MCP gives you
 
-34 tools across 6 categories:
+37 tools across 6 categories:
 
 | Category | Tools | Examples |
 |----------|-------|---------|
@@ -92,12 +92,26 @@ It is meant to show how a developer can:
 
 See the sample README for local setup instructions.
 
-## Pricing
+## Getting Started
 
-EvidInvest MCP access requires an EvidInvest plan with MCP access.
+1. Sign up at **https://evidinvest.com/developers** to grab an API key.
+   <!-- TODO: replace with `create_account` MCP tool once it ships -->
+2. Configure your MCP client to connect to `https://mcp.evidinvest.com/mcp` with `Authorization: Bearer evid_sk_...`, or use the npm proxy package `@evidinvest/mcp-server`.
+3. New accounts include a free monthly tool-call allowance — top up with credits when you need more (see below).
 
-Sign up at:
-- **https://evidinvest.com/developers**
+## Credits & Pricing
+
+EvidInvest MCP uses a credit system: every tool call deducts one credit from your account.
+
+- **Free tier** — every account gets a monthly free allowance to try MCP without paying.
+- **Top-up tiers** (one-time purchases, credits never expire):
+  - **100 credits** — $5
+  - **500 credits** — $19
+  - **2,000 credits** — $59
+
+Manage your balance and top up at **https://evidinvest.com/developers**.
+
+If a tool call returns a `payment required` error, your balance is at zero — top up or wait for next month's free refresh.
 
 ## License
 
