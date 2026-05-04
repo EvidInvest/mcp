@@ -1,7 +1,7 @@
 {
   "name": "EvidInvest",
-  "description": "EvidInvest MCP Server — 37 financial data, valuation, and portfolio management tools for AI agents. Connect Claude, Cursor, or any MCP client.",
-  "version": "1.0.1",
+  "description": "EvidInvest MCP Server — 42 financial data, valuation, portfolio management, and SEC supply chain tools for AI agents. Includes DCF, WACC, CAGR, MPT optimizer, and SEC 10-K filing intelligence. Connect Claude, Cursor, or any MCP client.",
+  "version": "1.1.0",
   "type": "mcp",
   "config": {
     "command": "npx",
