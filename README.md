@@ -41,7 +41,7 @@ The included `claude-plugin.json` is an example configuration artifact, but alwa
 
 ## What EvidInvest MCP gives you
 
-37 tools across 6 categories:
+45 tools across 7 categories:
 
 | Category | Tools | Examples |
 |----------|-------|---------|
@@ -50,15 +50,27 @@ The included `claude-plugin.json` is an example configuration artifact, but alwa
 | **Calculations** | 5 | WACC, DCF, margin of safety, comparables, DDM |
 | **Valuations** | 7 | Company snapshot, fair value range, reverse DCF, stock comparison, CAGR matrix |
 | **Portfolio Analytics** | 2 | MPT optimization (Max Sharpe / Min Variance), risk decomposition (VaR, CVaR) |
-| **Portfolio Management** | 6 | Create/list/delete stock lists, add/remove symbols, watchlist toggle |
+| **Portfolio Management** | 8 | Create/list/delete stock lists, add/remove symbols, watchlist toggle |
+| **SEC Intelligence** | 6 | Supply chain mapping, risk extraction, chokepoint detection from 10-K/20-F filings |
 
-### Portfolio Management (new)
+### Portfolio Management
 Manage your stock lists, watchlists, and portfolio lists without the UI:
 - `list_user_stock_lists` — list all your lists with symbols and counts
 - `create_user_stock_list` — create a stock list, watchlist, or portfolio list
 - `add_symbols_to_user_list` / `remove_symbols_from_user_list` — manage symbols
+- `get_list_items` — get all symbols in a list
+- `get_watchlist_status` — check watchlist status for a set of symbols
 - `set_user_list_watched` — toggle watchlist tracking
 - `delete_user_stock_list` — delete a non-system list
+
+### SEC Intelligence (new)
+Extract structured data from SEC 10-K and 20-F filings — supply chains, risk factors, competitive moats, and more:
+- `sec_get_profile` — products, customers, suppliers, strategic priorities, competitive moat
+- `sec_get_supply_chain` — supply chain edges with relationship type and filing evidence quotes
+- `sec_get_risks` — risk factors and concentration risks from Item 1A
+- `sec_find_chokepoints` — identify critical supply chain dependencies and single points of failure
+- `sec_search` — search the SEC supply chain database by company, tier, or relationship
+- `sec_compare` — side-by-side SEC profile comparison between two companies
 
 ## Skills
 
