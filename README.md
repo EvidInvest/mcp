@@ -41,14 +41,14 @@ The included `claude-plugin.json` is an example configuration artifact, but alwa
 
 ## What EvidInvest MCP gives you
 
-45 tools across 7 categories:
+46 tools across 7 categories:
 
 | Category | Tools | Examples |
 |----------|-------|---------|
 | **Financial Data** | 6 | Company profile, income statement, balance sheet, cash flow, growth rates, PE ratios |
 | **Market Data** | 8 | Current price, historical prices, enterprise value, peers, multiples, dividends |
 | **Calculations** | 5 | WACC, DCF, margin of safety, comparables, DDM |
-| **Valuations** | 7 | Company snapshot, fair value range, reverse DCF, stock comparison, CAGR matrix |
+| **Valuations** | 8 | Company snapshot, fair value range, reverse DCF, stock comparison, CAGR matrix, growth trajectory |
 | **Portfolio Analytics** | 2 | MPT optimization (Max Sharpe / Min Variance), risk decomposition (VaR, CVaR) |
 | **Portfolio Management** | 8 | Create/list/delete stock lists, add/remove symbols, watchlist toggle |
 | **SEC Intelligence** | 6 | Supply chain mapping, risk extraction, chokepoint detection from 10-K/20-F filings |
