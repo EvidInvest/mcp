@@ -1,6 +1,6 @@
 # EvidInvest MCP Server — llms.txt
 
-> Financial data and valuation tools for AI agents. 34 tools covering company fundamentals, market data, DCF analysis, portfolio optimization, portfolio tracking, and stock comparison.
+> Financial data and valuation tools for AI agents. 46 tools covering company fundamentals, market data, DCF analysis, growth trajectory and two-stage fair value, portfolio optimization, portfolio tracking, stock comparison, and SEC supply chain intelligence.
 
 ## Quick Start
 
@@ -23,9 +23,10 @@ Connect via MCP StreamableHTTP at `https://mcp.evidinvest.com/mcp` with `Authori
 For a complete stock analysis:
 1. `get_company_snapshot` — overview
 2. `get_fair_value_range` — is it cheap or expensive?
-3. `get_cagr_matrix` — growth trajectory
-4. `get_dcf_valuation` — detailed intrinsic value
-5. `get_reverse_dcf` — what the market expects
+3. `get_cagr_matrix` — historical compound growth rates
+4. `get_growth_trajectory` — EPS growth shape (ACCELERATING / STABLE / RECOVERY / DECELERATING / DETERIORATING) and two-stage DCF conservative-moderate-bull range
+5. `get_dcf_valuation` — detailed intrinsic value
+6. `get_reverse_dcf` — what the market expects
 
 ## Important Notes
 
