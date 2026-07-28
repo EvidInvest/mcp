@@ -1,5 +1,10 @@
 # EvidInvest MCP
 
+**SEC filings and financial data for AI agents — credit-metered, no subscription.**
+46 tools: SEC filings & earnings-transcript search, company financials, DCF/WACC/CAGR
+valuation, portfolio optimization, and SEC 10-K supply-chain intelligence. Pay-as-you-go
+credits from $5; they never expire.
+
 Public docs, connection info, prompt skills, and sample apps for the **EvidInvest MCP** ecosystem.
 
 This repo is intentionally **public**.

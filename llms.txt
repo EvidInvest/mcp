@@ -1,6 +1,6 @@
 # EvidInvest MCP Server — llms.txt
 
-> Financial data and valuation tools for AI agents. 46 tools covering company fundamentals, market data, DCF analysis, growth trajectory and two-stage fair value, portfolio optimization, portfolio tracking, stock comparison, and SEC supply chain intelligence.
+> SEC filings and financial data for AI agents — credit-metered, no subscription. 46 tools covering SEC filings search, earnings-call transcript search, company fundamentals, market data, DCF analysis, growth trajectory and two-stage fair value, portfolio optimization, portfolio tracking, stock comparison, and SEC supply-chain intelligence.
 
 ## Quick Start
 
@@ -8,6 +8,7 @@ Connect via MCP StreamableHTTP at `https://mcp.evidinvest.com/mcp` with `Authori
 
 ## What You Can Do
 
+- Search SEC filings (10-K/10-Q/8-K sections) and earnings-call transcripts with citation-complete results (accession numbers + sec.gov source links)
 - Value any US-listed stock using DCF, PE, PEG, P/B, P/S, EV/EBITDA
 - Get a bear/base/bull fair value range with a verdict (undervalued/fairly valued/overvalued)
 - Compare up to 5 stocks side-by-side on valuation metrics
